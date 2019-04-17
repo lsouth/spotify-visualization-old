@@ -22,6 +22,8 @@ function createTopTracks(tracks, timeframe, genre_array){
   selection.append("text").text(scales.timeframe(timeframe))
     .attr('font-size', 'medium')
 
+  console.log(tracks)
+
   // HACKY THING
   tracks = tracks.slice(0, 10)
   for (track of tracks) {
