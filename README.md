@@ -1,4 +1,4 @@
-# spotify-visualization
+# Spotify Personal Listening Visualization
 To view: https://lsouth.github.io/spotify-visualization/
 
 Write-up
