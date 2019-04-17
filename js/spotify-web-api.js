@@ -1746,40 +1746,42 @@ if (typeof module === 'object' && typeof module.exports === 'object') {
 // CUSTOM CODE STARTS HERE.
 
 function initSpotifyWebApi() {
-        // Get the hash of the url
-        const hash = window.location.hash
-            .substring(1)
-            .split('&')
-            .reduce(function (initial, item) {
-                if (item) {
-                    var parts = item.split('=');
-                    initial[parts[0]] = decodeURIComponent(parts[1]);
-                }
-                return initial;
-            }, {});
-        // Set token
-        let _token = hash.access_token;
+    // Get the hash of the url
+    const hash = window.location.hash
+        .substring(1)
+        .split('&')
+        .reduce(function (initial, item) {
+            if (item) {
+                var parts = item.split('=');
+                initial[parts[0]] = decodeURIComponent(parts[1]);
+            }
+            return initial;
+        }, {});
+    // Set token
+    let _token = hash.access_token;
 
-        const authEndpoint = 'https://accounts.spotify.com/authorize';
+    // Redirection handler before spotify login.
+    const redirectUri = "https://lsouth.github.io/redirect_handler.html"
 
-        var token = "";
+    // If there is no token, redirect to Spotify authorization
+    if (!_token) {
+        window.location = `${redirectUri}`;
+    } else {
+        var s = new SpotifyWebApi();
+        s.setAccessToken(_token);
+        return s;
+    }
+}
 
-        const clientId = "ee2959225dcc4ceabddef69875f957ec";
-        const redirectUri = "https://lsouth.github.io/spotify-visualization/";
-
-        const scopes = [
-            'user-top-read',
-            'user-read-recently-played',
-        ];
-
-        // If there is no token, redirect to Spotify authorization
-        if (!_token) {
-            window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
-        } else {
-            var s = new SpotifyWebApi();
-            s.setAccessToken(_token);
-            return s;
-        }
+function doAuthRedirect() {
+    const authEndpoint = 'https://accounts.spotify.com/authorize';
+    const clientId = "ee2959225dcc4ceabddef69875f957ec";
+    const redirectUri = "https://lsouth.github.io/spotify-visualization/";
+    const scopes = [
+        'user-top-read',
+        'user-read-recently-played',
+    ];
+    window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
 }
 
 var FETCHED_LIST = [];
