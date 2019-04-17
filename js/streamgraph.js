@@ -184,11 +184,11 @@ genre_color = (name) => {
 
 highlight_genre = (genres) => {
 	// manage legend
-	svg.selectAll('.legend_text').filter(d => !genres.includes(d)).attr('fill', darkcolor)
-	svg.selectAll('.legend_text').filter(d => genres.includes(d)).attr('fill', lightcolor)
+	svg.selectAll('.legend_text').filter(d => genres.indexOf(d)).attr('fill', darkcolor)
+	svg.selectAll('.legend_text').filter(d => !genres.indexOf(d)).attr('fill', lightcolor)
 
-	svg.selectAll('.legend_rect').filter(d => !genres.includes(d)).attr('fill', d => darken_genre_color(d))
-	svg.selectAll('.legend_rect').filter(d => genres.includes(d)).attr('fill', d => genre_color(d))
+	svg.selectAll('.legend_rect').filter(d => genres.indexOf(d)).attr('fill', d => darken_genre_color(d))
+	svg.selectAll('.legend_rect').filter(d => !genres.indexOf(d)).attr('fill', d => genre_color(d))
 	
 	// manage paths
 	svg.selectAll('.genre_curve')
@@ -196,7 +196,7 @@ highlight_genre = (genres) => {
 		.style('fill', (d) => darken_genre_color(d[0].genre_name))
 		.duration(500)
 
-	svg.selectAll('.genre_curve').filter(c => genres.includes(c[0].genre_name)).transition()
+	svg.selectAll('.genre_curve').filter(c => !genres.indexOf(c[0].genre_name)).transition()
 		.style('fill', (d) => saturate_genre_color(d[0].genre_name))
 		.duration(502)
 }
