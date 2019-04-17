@@ -23,7 +23,7 @@ function createTopTracks(tracks, timeframe, genre_array){
     .attr('font-size', 'medium')
 
   // HACKY THING
-  tracks = tracks.slice(0, 16)
+  tracks = tracks.slice(0, 10)
   for (track of tracks) {
     track.val1 = Math.random()*100
     track.val2 = Math.random()*100
@@ -225,7 +225,7 @@ function createTopArtists(artists, timeframe, genre_array){
   let selection = d3.select("#top-artists-" + timeframe);
   selection.append("text").text(scales.timeframe(timeframe))
 
-  artists = artists.slice(0, 16)
+  artists = artists.slice(0, 10)
 
   gartists = selection.selectAll('.gartist')
     .data(artists)
