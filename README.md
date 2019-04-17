@@ -10,7 +10,7 @@ A write-up of the visualization is located in the docs folder. To compile using 
 Running without the argument 'pdf' will cause it to look for .eps versions of the images, which is not available for all of the images. This will likely cause an error.
 
 ## About This Visualization
-This was produced as a final project for Michelle Borkin's Spring 2019 course CS 7250 by Sara Di Bartolomeo, Eysa Lee, Amogh Pradeep, and Laura South (ordered alphabetically).
+This was produced as a final project for Professor Michelle Borkin's Spring 2019 course CS 7250 by Sara Di Bartolomeo, Eysa Lee, Amogh Pradeep, and Laura South (ordered alphabetically).
 ## Motivation
 Although Spotify is one of the most popular music streaming services, the app does not currently provide users with a way to view their personal listening history. Several third-party apps allow users to see their personal listening data, but none fully utilize the power of data visualizations to convey information. Most simply provide a static list of the user's top tracks with no interactivity or exploratory capabilities. In this work we create an interactive data visualization using information available from the Spotify API to help users better understand their personal listening patterns. 
 ## Data
