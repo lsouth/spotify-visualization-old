@@ -1,0 +1,272 @@
+\documentclass[journal]{vgtc}                % final (journal style)
+% \documentclass[review,journal]{vgtc}         % review (journal style)
+%\documentclass[widereview]{vgtc}             % wide-spaced review
+% \documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+
+% This is eysa's macro file
+\input{macros}
+
+%% Uncomment one of the lines above depending on where your paper is
+%% in the conference process. ``review'' and ``widereview'' are for review
+%% submission, ``preprint'' is for pre-publication, and the final version
+%% doesn't use a specific qualifier.
+
+%% Please use one of the ``review'' options in combination with the
+%% assigned online id (see below) ONLY if your paper uses a double blind
+%% review process. Some conferences, like IEEE Vis and InfoVis, have NOT
+%% in the past.
+
+%% Please note that the use of figures other than the optional teaser is not permitted on the first page
+%% of the journal version.  Figures should begin on the second page and be
+%% in CMYK or Grey scale format, otherwise, colour shifting may occur
+%% during the printing process.  Papers submitted with figures other than the optional teaser on the
+%% first page will be refused. Also, the teaser figure should only have the
+%% width of the abstract as the template enforces it.
+
+%% These few lines make a distinction between latex and pdflatex calls and they
+%% bring in essential packages for graphics and font handling.
+%% Note that due to the \DeclareGraphicsExtensions{} call it is no longer necessary
+%% to provide the the path and extension of a graphics file:
+%% \includegraphics{diamondrule} is completely sufficient.
+%%
+\ifpdf%                                % if we use pdflatex
+  \pdfoutput=1\relax                   % create PDFs from pdfLaTeX
+  \pdfcompresslevel=9                  % PDF Compression
+  \pdfoptionpdfminorversion=7          % create PDF 1.7
+  \ExecuteOptions{pdftex}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg} % for pdflatex we expect .pdf, .png, or .jpg files
+\else%                                 % else we use pure latex
+  \ExecuteOptions{dvips}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
+\fi%
+
+%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
+\graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
+
+\usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
+\PassOptionsToPackage{warn}{textcomp}  % to address font issues with \textrightarrow
+\usepackage{textcomp}                  % use better special symbols
+\usepackage{mathptmx}                  % use matching math font
+\usepackage{times}                     % we use Times as the main font
+\renewcommand*\ttdefault{txtt}         % a nicer typewriter font
+\usepackage{cite}                      % needed to automatically sort the references
+\usepackage{tabu}                      % only used for the table example
+
+\usepackage{booktabs}                  % only used for the table example
+
+%% We encourage the use of mathptmx for consistent usage of times font
+%% throughout the proceedings. However, if you encounter conflicts
+%% with other math-related packages, you may want to disable it.
+
+%% In preprint mode you may define your own headline.
+%\preprinttext{To appear in IEEE Transactions on Visualization and Computer Graphics.}
+
+%% If you are submitting a paper to a conference for review with a double
+%% blind reviewing process, please replace the value ``0'' below with your
+%% OnlineID. Otherwise, you may safely leave it at ``0''.
+\onlineid{0}
+
+%% Paper title.
+\title{Spotify Visualization: Visualizing Music Listening History}
+%% This is how authors are specified in the journal style
+
+%% indicate IEEE Member or Student Member in form indicated below
+\author{Sara Di Bartolomeo, Eysa Lee, Amogh Pradeep, Laura South}
+\authorfooter{
+%% insert punctuation at end of each item
+\item
+ Sara Di Bartolomeo, Eysa Lee, Amogh Pradeep, and Laura South are with Northeastern University. E-mail: \{dibartolomeo.s\,$|$\,lee.ey\,$|$\,pradeep.am\,$|$\,south.l\}@husky.neu.edu.
+}
+
+%other entries to be set up for journal
+\shortauthortitle{Di Bartolomeo \MakeLowercase{\textit{et al.}}: My Week in Music: Visualizing Music Listening History}
+%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
+
+%% Abstract section.
+\abstract{Although Spotify is one of the most popular music streaming services, the app does not currently provide users with a way to view their personal listening history. Several third-party apps allow users to see their personal listening data, but none fully utilize the power of data visualizations to convey information. Most simply provide a static list of the user's top tracks with no interactivity or exploratory capabilities. In this work we create an interactive data visualization using information available from the Spotify API to help users better understand their personal listening patterns. 
+We use data gathered through the Spotify API to construct an overview of a user's current topic artists and top tracks and a stream graph of the genres a user has most frequently listened to in the short-, medium-, and long-term.
+} % end of abstract
+
+%% Keywords that describe your work. Will show as 'Index Terms' in journal
+%% please capitalize first letter and insert punctuation after last keyword
+\keywords{personalized, music, history, stacked area chart\eysa{I'm not super familiar with visualization keywords... plaese help}}
+
+%% ACM Computing Classification System (CCS). 
+%% See <http://www.acm.org/class/1998/> for details.
+%% The ``\CCScat'' command takes four arguments.
+
+% \CCScatlist{ % not used in journal version
+%  \CCScat{K.6.1}{Management of Computing and Information Systems}%
+% {Project and People Management}{Life Cycle};
+%  \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
+% }
+
+%% Uncomment below to include a teaser figure.
+\teaser{
+  \centering
+  \includegraphics[width=0.75\linewidth]{placeholder_image2}
+  \caption{\eysa{Tentative screenshot of our thing}.}
+	\label{fig:teaser}
+}
+
+%% Uncomment below to disable the manuscript note
+%\renewcommand{\manuscriptnotetxt}{}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+\nocopyrightspace
+
+\vgtcinsertpkg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%% The ``\maketitle'' command must be the first command after the
+%% ``\begin{document}'' command. It prepares and prints the title block.
+
+%% the only exception to this rule is the \firstsection command
+\firstsection{Introduction}
+
+\maketitle
+
+\eysa{\amogh{please flesh out this section}}
+
+Spotify is one of the most popular music streaming service, with 207 million monthly active users in 2018. The app does not currently provide users with a way to view their personal listening history despite the popularity of its annual end of year visualization, which provides users a high-level overview of a their listening habits for the year. Several third-party apps allow users to see their personal listening data, but none fully utilize the power of data visualizations to convey information. In this work we create an interactive data visualization using information available from the Spotify API to help users better understand their personal listening patterns.\eysa{this intro needs a lot of help}
+
+\section{Related Works}
+Many applications exist to visualization a user's Spotify listening history, with usages and data being displayed varying. We will consider the related works as two broad categories: (1) Spotify's official end of year visualization and (2) third-party applications.
+
+\subsection{Spotify's End of Year Visualization}
+
+While generally Spotify does not provide user's with a way to visualize their personal listening history, at the end of each year Spotify releases a visualization `summarizing' a user's listening history for the past year\cite{Spo18}.
+
+This visual summary has gone by different names over the years, such as \emph{SpotifyWrapped} and \emph{Year in Review}, but the purpose of the visualization has remained fairly consistent. It focuses on giving users an overview of their year by displaying aggregated data, such as total minutes listened, top tracks, top artists, and top genre. Additionally, it only displays data from a fixed range of time (January to October) and only displays a fixed number of tracks and artists. While this accomplishes the purpose of giving a year summary for a user, it does not provide users much freedom in exploring their data. This visualization has the additional drawback of only being available for a limited amount of time each year.
+
+\subsection{Third-party Applications}
+
+Many third-party services exist to utilize the data available from using a music streaming service. One of the more popular services is Last.fm, which gives users an interface to explore their data upon connecting to their streaming service. This has spawned applications such as \cite{Pre08,Dan12}, which use Last.fm's API to allow users to explore their personal data.
+These services, however, either require a lot of upfront effort from the user to use their service (such as registering an account)\eysa{what's a better way to phrase this?} or provide \emph{too much} data and can be difficult for a user to process.
+
+Another popular class of third-party applications are simply scripts written by curious programmers, such as \cite{Boe16}. It is hardly surprising that many casual programmers, noticing the abundance of data and lack of existing popular visualization, whip up scripts visualizing their personal data and make the code available for others. This class of applications suffers from similar drawbacks to services using Last.fm. These mostly lack web interfaces, which results in work for a user to download and figure out how to run scripts. Additionally, these applications mostly try to visualize as much as possible, which can be an overwhelming amount of data for a user.
+
+\section{Design Process}
+
+\subsection{Task Analysis}
+
+In order to determine tasks to prioritize in our design, we interviewed potential users of our visualization. Nine short interviews with people of varying listening habits were conducted to prevent overfitting to a single person's preferences. The interviews consisted of asking about listening habits, previous interactions with personalized music history visualizations (if at all), data they're interested in visualizing, and data they're not interested in being visualized. While all of the responses were unique and many of the users interviewed had vastly different ideas of what they would want out of a music history visualization, four main points appeared in many of the interviews: (1) `typical' personal statistics, (2) `interesting' statistics, (3) ability to compare data with others, and (4) change in music habits over time. 
+`Typical' statistics include top artists, top tracks, amount of time spent listening to music over a certain period, and other statistics commonly shown by music history visualizations. A few people were creative in what they imagined could be visualized, and we lumped those suggestions into a category of `interesting' statistics. 
+These four main points and each user's stance on these points are summarized in \autoref{tab:interviews}.
+
+\input{tab_interviews}
+
+Something to note about the results of our interviews was that there is almost an equal number of interviewees only interested in the data in the context of comparing against others and interviewees interested in the results independent of others. This was a surprising result, as we had not previously considered the social aspect of visualizing music history. In determining our domain goals, we aimed for the tool to support use alone and in a social context. Between the two, we prioritized solo use since comparison could be done in an ad hoc manner by users more easily than the other way around. 
+A full summary of our domain goals can be found in \autoref{tab:taskanalysis}.
+
+\input{tab_taskanalysis}
+
+We refined our domain goals for the solo tool to address the applicable main categories from our interviews, namely exploring personal statistics and change in music habits over time. The scope of visualizing change in music habits was narrowed down to be daily listening history split by genre, and viewing personal statistics was specified to be viewing top artists/tracks. These goals, while chosen with the user interviews in mind, were partially influenced by technical constraints of the Spotify API. Discussion on these constraints appear in \autoref{sec:dataexplore}.
+
+
+\subsection{Data Acquisition and Exploratory Analysis}\label{sec:dataexplore}
+
+We chose the use the Spotify API to fetch user data and tested the feasibility of our ideas by performing a preliminary exploratory analylsis. 
+While we found song and artist data fetched by the Spotify API to be detailed, the Spotify API is limited in user-specific data that can be easily retrieved. The API allows retrieving statistics such as top tracks/artists and recently played tracks but do not provide details such as number of plays or tracks played during a specific window. 
+
+We discovered getting the breakdown of music by day or hour requires retrieving many batches of last played\eysa{todo: more discussion on limitations on granularity our visualizations can display; getting `interesting' statistics required hacky solutions, which ruled out many interesting thigns we had considered visualizing}
+
+\eysa{\amogh{please flesh out this section}}
+
+\section{Design}
+
+\subsection{Mockup}
+
+Created a mockup of our tool.
+Mockup of our design complete with interactions can be found in \autoref{fig:interactions}. 
+
+\input{fig_mockup}
+
+\eysa{todo: come back and expand this section. Can talk more about the mockup and how they accomplish the domain goals}
+Static mockup (\autoref{fig:static_mockup}) has a stream graph displaying genres split by day and top tracks/artists in short, medium, and long term. \autoref{fig:genre_interaction} shows hoving over a genre in the stream graph, \autoref{fig:artist_interaction} shows hovering over an artist, and \autoref{fig:track_interaction} shows hovering over a track.
+
+
+\subsection{Preliminary Usability Testing}
+
+Implemented our preliminary design; it matched our mockup closely and the exact design can be found in \autoref{fig:prelim_design}.
+
+We conducted a usability test with this design. The usability testing consisted introducing our project and asking classmates to explore the visualization. Despite test users admitting to being familiar with our project from in-class presentations, many struggled with identifying the data encoded in the visualization and the interactions. Many found the visualization aesthetically appealing and enjoyed the color scheme, but found interactions such as highlighting hard to see \eysa{say that bolding didn't stand out much because we forgot to implement non-highlighted parts fading}. \eysa{Users also pointed out that columns were not labeled and there was no title to indicate if the visualization is a prediction or history.} \eysa{In testing the design, we observed that users struggled to see the bottom of the list and the stream graph at the same time.} \eysa{We also discovered that Spotify likes to tag lots and lots of genres and the stream graph was easily overloaded with too many genres being plotted.}
+
+Outline:
+\begin{itemize}
+  \item Explain how we conducted our usability tests (Introduced our project and asked users to play around with the visualization; asked users if they could identify what particular things were supposed to represent)
+  \item Pros: color scheme, nice to look at
+  \item Cons: Hard to see when artists/tracks are bolded (doesn't stand out much); columns are not labled; no title to indicate if the visualization is a prediction or history of music listening; stream graph and lists don't fit on the screen together
+  \item How to visualize genres in stream graph without overloading it?
+\end{itemize}
+
+\input{fig_prelim}
+
+\subsection{Final Design}
+
+Modifications based on usability testing:
+\begin{itemize}
+  \item Moved stream graph and track/artist columns horizontally; took advantage of most desktop screens being wider than taller and placed things on the side
+  \item Added an "other" category for genre; not having an "other" category previously made for some stream graphs appearing to get smaller in mid ranges; compromise to not overload graph with too many colors but not lose the data
+  \item Added titles to the track/artist columns
+  \item Changed genre encodings on artist to circles; artists may have many genres associated with them, so this eliminates lines overflowing over other text
+  \item Added fade/bolding across artist columns to better visualize relationships across columns
+  \item Added description at the bottom to explain the visualization
+  \item Added tooltip walkthrough to explain how the visualization works
+\end{itemize}
+
+Outline:
+\begin{itemize}
+  \item How did our final design change?
+  \item Main aspects of the final design
+\end{itemize}
+
+\section{Discussion}
+
+Discussion outline:
+\begin{itemize}
+  \item What was the response like?
+  \item What were areas we wanted to explore but couldn't
+  \item What could we improve?
+  \item Usability testing:
+  \begin{itemize}
+    \item Early usability testing suggested users had difficulty discovering all of the features of the visualization.
+  \end{itemize}
+\end{itemize}
+
+\section{Conclusion}
+
+Future directions include:
+\begin{itemize}
+  \item Implementing song statistics; current numbers are placeholders
+  \item Computing over the data
+  \item How can we make it easier for people to compare?
+  \begin{enumerate}
+    \item Maybe change genre color scheme to be the same for each genre rather than same colors for each user?
+  \end{enumerate}
+  \item Walkthrough to introduce users how to use/read the tool
+  \item Landing page
+\end{itemize}
+
+%% if specified like this the section will be committed in review mode
+\acknowledgments{
+The authors wish to thank the Spring 2019 teaching staff of Michelle Borkin's CS 7250 class for their helpful comments and guidance.
+}
+
+%\bibliographystyle{abbrv}
+\bibliographystyle{abbrv-doi}
+%\bibliographystyle{abbrv-doi-narrow}
+%\bibliographystyle{abbrv-doi-hyperref}
+%\bibliographystyle{abbrv-doi-hyperref-narrow}
+
+\bibliography{references}
+\end{document}
+

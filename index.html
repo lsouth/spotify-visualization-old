@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+  	<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <script src="./js/legend.js"></script>
+    <script src="./js/streamgraph.js"></script>
+    <script src="./js/top-tracks-and-artists.js"></script>
+    <script src="./js/spotify-web-api.js"></script>
+    <script src="./js/intro.js"></script>
+    <link rel="stylesheet" href="css/style.css"></link>
+    <link rel="stylesheet" href="css/introjs.css"></link>
+  </head>
+  <body>
+  </body>
+  <script type="text/javascript">
+  	var width = window.innerWidth;
+  	var height = window.innerHeight;
+    var genres = [];
+    var margin = {left: window.innerWidth*5/100, right: window.innerWidth*5/100}
+    var listWidth = width/6;
+
+    var user = 'sara'; // CHANGE WITH LAURA TO TEST LAURA'S DATA
+
+  	var svg = d3.select('body')
+  		.append('svg')
+  		.attr('width', width)
+  		.attr('height', height);
+
+    loadStreamgraph();
+    loadTopTracksArtists();
+    
+  </script>
+</html>
