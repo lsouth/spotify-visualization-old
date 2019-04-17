@@ -1761,7 +1761,7 @@ function initSpotifyWebApi() {
     let _token = hash.access_token;
 
     // Redirection handler before spotify login.
-    const redirectUri = "https://lsouth.github.io/redirect_handler.html"
+    const redirectUri = "https://lsouth.github.io/spotify-visualization/redirect_handler.html"
 
     // If there is no token, redirect to Spotify authorization
     if (!_token) {
