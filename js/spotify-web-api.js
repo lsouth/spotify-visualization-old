@@ -1842,17 +1842,21 @@ async function getTopTracks(swapi) {
     var ranges = ["short_term", "medium_term", "long_term"];
     for(var r = 0; r < ranges.length; r++) {
         tobj["time_range"] = ranges[r];
-        var info = await swapi.getMyTopTracks(tobj).then(function(d){
+        var info = await swapi.getMyTopTracks(tobj).then(async function(d){
             var new_items = [];
             var items = d["items"];
+            var ids = [];
+            for(var i = 0; i < items.length; i++){
+                ids.push(items[i]["id"]);
+            }
+            console.log(ids);
+            var features = await swapi.getAudioFeaturesForTracks(ids).then(function(d){return d;});
+            console.log(features);
             for(var i = 0; i < items.length; i++){
                 var tobji = items[i];
-                console.log(tobji);
-                var audio_features = swapi.getAudioFeaturesForTrack(tobji["id"]);
-                tobji["audio_features"] = audio_features;
+                tobji["audio_features"] = features["audio_features"][i];
                 new_items.push(tobji);
             }
-            await sleep(1000); // Sleep a second between sets of audio feature requests.
             d["items"] = new_items;
             return d;
         });
