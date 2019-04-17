@@ -1847,6 +1847,7 @@ async function getTopTracks(swapi) {
             var items = d["items"];
             for(var i = 0; i < items.length; i++){
                 var tobji = items[i];
+                console.log(tobji);
                 var audio_features = swapi.getAudioFeaturesForTrack({"id": tobji["id"]});
                 tobji["audio_features"] = audio_features;
                 new_items.push(tobji);
