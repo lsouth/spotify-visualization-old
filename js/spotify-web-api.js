@@ -1842,7 +1842,18 @@ async function getTopTracks(swapi) {
     var ranges = ["short_term", "medium_term", "long_term"];
     for(var r = 0; r < ranges.length; r++) {
         tobj["time_range"] = ranges[r];
-        var info = await swapi.getMyTopTracks(tobj).then(function(d){return d;});
+        var info = await swapi.getMyTopTracks(tobj).then(function(d){
+            var new_items = [];
+            var items = d["items"];
+            for(var i = 0; i < items.length; i++){
+                var tobji = items[i];
+                var audio_features = swapi.getAudioFeaturesForTrack({"id": tobji["id"]});
+                tobji["audio_features"] = audio_features;
+                new_items.push(tobji);
+            }
+            d["items"] = new_items;
+            return d;
+        });
         ret[ranges[r]] = info;
     }
     return ret;
