@@ -22,12 +22,11 @@ function createTopTracks(tracks, timeframe, genre_array){
   selection.append("text").text(scales.timeframe(timeframe))
     .attr('font-size', 'medium')
 
-  console.log(tracks)
 
   // HACKY THING
   tracks = tracks.slice(0, 10)
   for (track of tracks) {
-    track['audio_features']['acousticness']
+    track['audio_features'].then(d => console.log(d))
     track.val1 = Math.random()*100
     track.val2 = Math.random()*100
     track.val3 = Math.random()*100
