@@ -26,9 +26,11 @@ function createTopTracks(tracks, timeframe, genre_array){
   // HACKY THING
   tracks = tracks.slice(0, 10)
   for (track of tracks) {
-    track['audio_features'].then(d => console.log(d))
-    track.val1 = Math.random()*100
-    track.val2 = Math.random()*100
+    #track['audio_features'].then(d => console.log(d))
+    track['audio_features'].then(d => track.val1 = d*100)
+    track['audio_features'].then(d => track.val2 = d*100)
+    //track.val1 = Math.random()*100
+    //track.val2 = Math.random()*100
     track.val3 = Math.random()*100
   }
 
