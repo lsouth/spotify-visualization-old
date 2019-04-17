@@ -1765,7 +1765,7 @@ function initSpotifyWebApi() {
         var token = "";
 
         const clientId = "ee2959225dcc4ceabddef69875f957ec";
-        const redirectUri = "https://pages.github.ccs.neu.edu/lsouth/spotify-visualization/index.html";
+        const redirectUri = "https://lsouth.github.io/spotify-visualization/";
 
         const scopes = [
             'user-top-read',
@@ -1797,7 +1797,7 @@ function getRecentlyPlayed(swapi, number, lst = [], next = 0) {
                 console.log("Finished data fetch: ", d);
                 FETCHED_LIST = lst.concat(fetchGenres(swapi, d["items"]));
             });
-    } else if (number > 50) { 
+    } else if (number > 50) {
         swapi.getMyRecentlyPlayedTracks(tobj).then(
             function(d){
                 console.log("Finished partial data fetch:", d);
