@@ -1852,7 +1852,7 @@ async function getTopTracks(swapi) {
                 tobji["audio_features"] = audio_features;
                 new_items.push(tobji);
             }
-            //sleep(1000); // Sleep a second between sets of audio feature requests.
+            await sleep(1000); // Sleep a second between sets of audio feature requests.
             d["items"] = new_items;
             return d;
         });
